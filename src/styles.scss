@@ -2,3 +2,7 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+body {
+    background: linear-gradient(135deg, #6a11cb 0%, #600b88 100%);
+}
