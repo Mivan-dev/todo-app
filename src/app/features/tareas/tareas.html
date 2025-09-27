@@ -1,4 +1,4 @@
-<div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center">
+<!-- <div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center">
     <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="/assets/logo.png" alt="Card image cap">
         <div class="card-body">
@@ -7,20 +7,29 @@
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
-</div>
+</div> -->
 
-<!-- Para ver las tarjetas en filas de a 6 -->
- <!-- <div class="container my-4">
+<div class="container my-4">
+  <h2 class="mb-4">Tareas</h2>
+
   <div class="row">
-    <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4" *ngFor="let tarea of tareas">
-      <div class="card h-100">
-        <img class="card-img-top" src="assets/logo.png" alt="Card image cap">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let tarea of tareas">
+      <div class="card">
+        <!-- Contenedor fijo para la imagen -->
+        <div class="card-img-container">
+          <img class="card-img-top" src="{{ tarea.image || 'assets/logo.png' }}" alt="Imagen de tarea">
+        </div>
+        <!-- Contenedor fijo para el contenido -->
         <div class="card-body">
-          <h5 class="card-title">{{ tarea.titulo }}</h5>
-          <p class="card-text">{{ tarea.descripcion }}</p>
-          <a href="#" class="btn btn-primary">Ver más</a>
+          <h5 class="card-title">{{ tarea.title }}</h5>
+          <p class="card-text">{{ tarea.description }}</p>
+          <div class="mt-auto d-flex justify-content-between">
+            <span class="badge" [ngClass]="tarea.completed ? 'bg-success' : 'bg-warning'">
+              {{ tarea.completed ? 'Completada' : 'Pendiente' }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div> -->
+</div>
