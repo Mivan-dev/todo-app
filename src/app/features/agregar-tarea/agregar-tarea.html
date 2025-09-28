@@ -1,1 +1,65 @@
-<p>agregar-tarea works!</p>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Agregar Tarea</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="tareaForm">
+            <!-- Titulo -->
+            <div class="mb-3">
+                <label for="title">Título</label>
+                <div class="input-group">
+                    <input
+                        id="title"
+                        class="form-control"
+                        placeholder="Curso de Angular, practicas, etc..."
+                        formControlName="title"
+                    />
+                </div>
+                <div class="text-danger" *ngIf="tareaForm.get('title')?.invalid && tareaForm.get('title')?.touched">
+                    <small *ngIf="tareaForm.get('title')?.errors?.['required']">El título es obligatorio</small>
+                    <small *ngIf="tareaForm.get('title')?.errors?.['minlength']">Mínimo 3 caracteres</small>
+                </div>
+            </div>
+            <!-- Descripcion -->
+            <div class="mb-3">
+                <label for="description">Descripción</label>
+                <div class="input-group">
+                    <textarea
+                        id="description"
+                        class="form-control"
+                        placeholder="Descripción detallada de la tarea..."
+                        formControlName="description"
+                        rows="4"
+                    ></textarea>
+                </div>
+                <div class="text-danger" *ngIf="tareaForm.get('description')?.invalid && tareaForm.get('description')?.touched">
+                    <small *ngIf="tareaForm.get('description')?.errors?.['required']">La descripción es obligatoria</small>
+                    <small *ngIf="tareaForm.get('description')?.errors?.['minlength']">Mínimo 10 caracteres</small>
+                </div>
+            </div>
+            <!-- imagen -->
+            <div class="mb-3">
+                <label for="image">Imagen (URL)</label>
+                <div class="input-group">
+                    <input
+                        id="image"
+                        class="form-control"
+                        placeholder="URL de la imagen"
+                        formControlName="image"
+                    />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel')">Cancelar</button>
+        <button type="button" class="btn btn-success" [disabled]="tareaForm.invalid" (click)="guardarTarea()">Guardar</button>
+    </div>
+</ng-template>
+
+<button class="btn btn-lg btn-success" (click)="open(content)">Add +</button>
+
+<hr />
+
+<pre>{{ closeResult() }}</pre>
