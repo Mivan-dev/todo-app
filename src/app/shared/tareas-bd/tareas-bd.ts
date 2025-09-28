@@ -31,4 +31,11 @@ export class TareasBd {
   getTareaById(id: string): Tarea | undefined {
     return this.getTareas().find(tarea => tarea.id === id);
   }
+
+  // agregar tarea
+   addTarea(tarea: Tarea): void {
+    const tareas = this.getTareas();
+    tareas.push(tarea);
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tareas));
+  }
 }
