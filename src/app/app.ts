@@ -4,10 +4,12 @@ import { Toolbar } from './layout/toolbar/toolbar';
 import { Footer } from "./layout/footer/footer";
 import { Tareas } from "./features/tareas/tareas";
 import { AgregarTarea } from "./features/agregar-tarea/agregar-tarea";
+import { ToastComp } from './shared/toast-comp/toast-comp';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Toolbar, Footer, Tareas, AgregarTarea],
+  imports: [CommonModule, RouterOutlet, Toolbar, Footer, Tareas, AgregarTarea, ToastComp],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
