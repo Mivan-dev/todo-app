@@ -5,3 +5,10 @@ export interface Tarea {
   description: string;
   completed: boolean;
 }
+
+export interface ToastInfo {
+  header?: string;
+  body: string;
+  delay?: number;
+  classname?: string;
+}
