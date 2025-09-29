@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Tarea } from '../entities';
 
 @Injectable({
@@ -6,6 +6,8 @@ import { Tarea } from '../entities';
 })
 export class TareasBd {
   private readonly STORAGE_KEY = 'tareas';
+  // TODO: Implementar subscribers para notificar cambios en las tareas (BehaviorSubject)
+  tareasActualizadas = new EventEmitter<Tarea[]>();
 
   //obtener tareas
   getTareas(): Tarea[] {
@@ -37,5 +39,13 @@ export class TareasBd {
     const tareas = this.getTareas();
     tareas.push(tarea);
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tareas));
+    this.tareasActualizadas.emit(tareas);
+  }
+
+  //eliminar tarea: Crea un array nuevo sin la tarea que se quiere eliminar y lo guarda
+  //TODO: agregar toast de tarea eliminada
+  deleteTarea(id: string): void{
+    const tareas = this.getTareas().filter(tarea => tarea.id !== id);
+    this.saveTareas(tareas);
   }
 }
