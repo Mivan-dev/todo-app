@@ -16,8 +16,8 @@ export class TareasBd {
       // Si no hay datos en el almacenamiento, inicializamos con ejemplos
       const tareasIniciales: Tarea[] = [
         { id: '1', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png', title: 'Aprender Angular', description: 'Nivel inicial', completed: false },
-        { id: '2', image: 'https://cdn.worldvectorlogo.com/logos/typescript.svg', title: 'Aprender TypeScript', description: 'Fundamentos de tipado', completed: true },
-        { id: '3', image: 'https://miro.medium.com/1*s9kgU8F1eB7Tzs7sG0YhBg.jpeg', title: 'Aprender Nest.JS', description: 'Buen Back para Angular', completed: false }
+        { id: '2', image: 'https://cdn.worldvectorlogo.com/logos/typescript.svg', title: 'Aprender TypeScript', description: 'Fundamentos de tipado fuerte.', completed: true },
+        { id: '3', image: 'https://miro.medium.com/1*s9kgU8F1eB7Tzs7sG0YhBg.jpeg', title: 'Aprender Nest.JS', description: 'Nest JS es un framework de Node.js para backend. Muy bueno para combinar con Angular ya que comparten el mismo criterio y escalabilidad.', completed: false }
       ];
       this.saveTareas(tareasIniciales);
       return tareasIniciales
@@ -39,6 +39,15 @@ export class TareasBd {
     const tareas = this.getTareas();
     tareas.push(tarea);
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tareas));
+    this.tareasActualizadas.emit(tareas);
+  }
+
+  //editar tarea
+  editTarea(tareaEditada: Tarea): void {
+    const tareas = this.getTareas().map(tarea =>
+      tarea.id === tareaEditada.id ? tareaEditada : tarea
+    );
+    this.saveTareas(tareas);
     this.tareasActualizadas.emit(tareas);
   }
 
