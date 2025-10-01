@@ -1,1 +1,59 @@
-<p>editar-tarea works!</p>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Editar Tarea</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editForm">
+            <!-- Titulo -->
+            <div class="mb-3">
+                <label for="title">Título</label>
+                <div class="input-group">
+                    <input
+                        id="title"
+                        class="form-control"
+                        placeholder="Curso de Angular, practicas, etc..."
+                        formControlName="title"
+                    />
+                </div>
+                <div class="text-danger" *ngIf="editForm.get('title')?.invalid && editForm.get('title')?.touched">
+                    <small *ngIf="editForm.get('title')?.errors?.['required']">El título es obligatorio</small>
+                    <small *ngIf="editForm.get('title')?.errors?.['minlength']">Mínimo 3 caracteres</small>
+                </div>
+            </div>
+            <!-- Descripcion -->
+            <div class="mb-3">
+                <label for="description">Descripción</label>
+                <div class="input-group">
+                    <textarea
+                        id="description"
+                        class="form-control"
+                        placeholder="Descripción detallada de la tarea..."
+                        formControlName="description"
+                        rows="4"
+                    ></textarea>
+                </div>
+                <div class="text-danger" *ngIf="editForm.get('description')?.invalid && editForm.get('description')?.touched">
+                    <small *ngIf="editForm.get('description')?.errors?.['required']">La descripción es obligatoria</small>
+                    <small *ngIf="editForm.get('description')?.errors?.['minlength']">Mínimo 10 caracteres</small>
+                </div>
+            </div>
+            <!-- imagen -->
+            <div class="mb-3">
+                <label for="image">Imagen (URL)</label>
+                <div class="input-group">
+                    <input
+                        id="image"
+                        class="form-control"
+                        placeholder="URL de la imagen"
+                        formControlName="image"
+                    />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel')">Cancelar</button>
+        <button type="button" class="btn btn-success" [disabled]="editForm.invalid" (click)="saveChanges()">Guardar</button>
+    </div>
+</ng-template>
