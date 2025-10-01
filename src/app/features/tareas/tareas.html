@@ -3,23 +3,35 @@
 
   <div class="row">
     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let tarea of tareas">
-      <div class="card">
-        <!-- Contenedor fijo para la imagen -->
+      <div class="card h-100">
+        <!-- imagen -->
         <div class="card-img-container">
-          <img class="card-img-top" src="{{ tarea.image || 'assets/logo.png' }}" alt="Imagen de tarea">
+          <img class="card-img-top" [src]="tarea.image || 'assets/logo.png'" alt="Imagen de tarea">
         </div>
-        <!-- Contenedor fijo para el contenido -->
-        <div class="card-body bg-light">
+
+        <!-- contenido -->
+        <div class="card-body bg-light d-flex flex-column">
           <h5 class="card-title">{{ tarea.title }}</h5>
-          <p class="card-text">{{ tarea.description }}</p>
-          <div class="mt-auto d-flex justify-content-between">
+          <p class="card-text flex-grow-1">{{ tarea.description }}</p>
+          <div class="mt-2">
             <span class="badge" [ngClass]="tarea.completed ? 'bg-success' : 'bg-warning'">
               {{ tarea.completed ? 'Completada' : 'Pendiente' }}
             </span>
           </div>
         </div>
-        <button class="btn btn-danger" (click)="deleteTarea(tarea.id)">Eliminar</button>
+
+        <!-- footer con botones -->
+        <div class="card-footer d-flex gap-2 align-items-stretch">
+        <button class="btn btn-sm btn-primary flex-fill" (click)="editarTareaComp.abrirModal(tarea.id)">
+          Editar
+        </button>
+        <button class="btn btn-sm btn-danger flex-fill" (click)="deleteTarea(tarea.id)">
+          Eliminar
+        </button>
       </div>
     </div>
   </div>
+
+  <!-- componente de edición: referencia local usada por los botones Editar -->
+  <app-editar-tarea #editarTareaComp></app-editar-tarea>
 </div>

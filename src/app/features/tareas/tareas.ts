@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TareasBd } from '../../shared/tareas-bd/tareas-bd';
 import { ToastService } from '../../shared/toast-service/toast-service';
+import { EditarTarea } from '../editar-tarea/editar-tarea';
 
 @Component({
   selector: 'app-tareas',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, EditarTarea],
   templateUrl: './tareas.html',
   styleUrl: './tareas.scss'
 })
@@ -26,8 +27,8 @@ export class Tareas implements OnInit {
     this.tareas = tareas;
     });
 
-    //Para limpiar las tareas del localStorage
-    //localStorage.clear();
+    // Para limpiar las tareas del localStorage
+    // localStorage.clear();
   }
 
   deleteTarea(id: string): void{
