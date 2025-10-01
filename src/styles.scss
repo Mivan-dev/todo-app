@@ -6,3 +6,141 @@
 body {
     background: linear-gradient(135deg, #6a11cb 0%, #600b88 100%);
 }
+
+:root {
+  /* ajusta estos colores según tu background */
+  --app-accent: #6c5ce7;    /* color principal (ej: violeta suave) */
+  --app-accent-600: #5947c7;/* hover/active */
+  --app-neutral: #2b2f36;   /* color de botón sobre fondo oscuro */
+  --app-text-on-accent: #ffffff;
+}
+
+/* clase de botón principal personalizada */
+.btn-neutral {
+  background-color: var(--app-accent);
+  color: var(--app-text-on-accent);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.btn-neutral:hover,
+.btn-neutral:focus {
+  background-color: var(--app-accent-600);
+  color: var(--app-text-on-accent);
+}
+
+/* variante outline que armoniza con el fondo */
+.btn-outline-neutral {
+  background-color: transparent;
+  color: var(--app-accent);
+  border: 1px solid rgba(108,92,231,0.25);
+}
+
+.btn-outline-neutral:hover,
+.btn-outline-neutral:focus {
+  background-color: rgba(108,92,231,0.06);
+  color: var(--app-accent-600);
+}
+
+/* opcional: ajustar botones pequeños/altura para que queden coherentes */
+.btn {
+  border-radius: 0.35rem;
+  transition: background-color .12s ease, color .12s ease;
+}
+
+:root{
+  --danger-soft: var(--app-accent);        /* ahora usa el violeta principal */
+  --danger-soft-600: var(--app-accent-600);
+  --danger-soft-rgba: 108,92,231;         /* rgba para el violeta */
+}
+
+/* variante llena (filled) — ahora violeta suave */
+.btn-danger-soft {
+  background-color: var(--danger-soft);
+  color: var(--app-text-on-accent);
+  border-color: transparent;
+  box-shadow: none;
+}
+.btn-danger-soft:hover,
+.btn-danger-soft:focus {
+  background-color: var(--danger-soft-600);
+}
+
+/* variante outline suave — mayor especificidad para sobreescribir Bootstrap */
+.btn.btn-outline-danger-soft {
+  background-color: transparent;
+  color: var(--danger-soft);
+  border: 1px solid rgba(var(--danger-soft-rgba), 0.25);
+}
+.btn.btn-outline-danger-soft:hover,
+.btn.btn-outline-danger-soft:focus {
+  background-color: rgba(var(--danger-soft-rgba), 0.06);
+  color: var(--danger-soft-600);
+  border-color: rgba(var(--danger-soft-rgba), 0.35);
+}
+
+/* si aún se sobreescribe, fuerza propiedades clave */
+.btn.btn-outline-danger-soft {
+  border-width: 1px;
+  border-style: solid;
+}
+
+:root{
+  /* palette (ajusta si ya tienes otras variables) */
+  --app-accent: #6c5ce7;           /* violeta principal */
+  --app-accent-rgb: 108,92,231;
+  --completed-violet: #b388ff;     /* violeta suave */
+  --completed-pink: #ff9ad1;       /* rosa suavel */
+  --pending-soft: #f6c24d;         /* amarillo suave */
+  --badge-text-on-accent: #ffffff;
+}
+
+/* --- Switch (checkbox) colores personalizados --- */
+/* Aumenta especificidad para sobreescribir Bootstrap */
+.form-check-input {
+  /* si has escalado el switch via transform, mantener hit area */
+  transform-origin: left center;
+}
+
+/* checked state: usar el violeta del theme en vez de azul */
+.form-check-input:checked {
+  background-color: var(--app-accent) !important;
+  border-color: var(--app-accent) !important;
+}
+
+/* foco alrededor del switch con color violeta translúcido */
+.form-check-input:focus {
+  box-shadow: 0 0 0 .2rem rgba(var(--app-accent-rgb), .18) !important;
+}
+
+/* si el navegador usa appearance, forzamos color del thumb en Chrome/Safari */
+.form-check-input:checked::-webkit-checkmark,
+.form-check-input:checked::-webkit-slider-thumb {
+  background-color: var(--app-accent) !important;
+}
+
+/* --- Badges personalizados --- */
+.badge-completed {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--completed-violet), var(--completed-pink));
+  color: var(--badge-text-on-accent);
+  border-radius: .5rem;
+  padding: .25rem .5rem;
+  font-weight: 600;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+
+.badge-pending {
+  display: inline-block;
+  background-color: var(--pending-soft);
+  color: #2b2b2b;
+  border-radius: .5rem;
+  padding: .25rem .5rem;
+  font-weight: 600;
+}
+
+/* Opcional: si Bootstrap sigue aplicando .badge.bg-success, forzar override */
+.badge.bg-success {
+  background: linear-gradient(90deg, var(--completed-violet), var(--completed-pink)) !important;
+  color: var(--badge-text-on-accent) !important;
+}
