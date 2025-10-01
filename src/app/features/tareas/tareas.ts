@@ -38,4 +38,15 @@ export class Tareas implements OnInit {
     this.tareas = this.tareasBd.getTareas();
   }
 
+  toggleCompleted(tarea: Tarea, completed: boolean): void {
+    const updated: Tarea = { ...tarea, completed };
+    this.tareasBd.editTarea(updated);
+
+    // Actualiza localmente para UI inmediata si no usas BehaviorSubject
+    const idx = this.tareas.findIndex(t => t.id === tarea.id);
+    if (idx > -1) this.tareas[idx] = updated;
+
+    this.toastService.showSuccess(completed ? 'Tarea marcada como completada' : 'Tarea marcada como pendiente');
+  }
+
 }

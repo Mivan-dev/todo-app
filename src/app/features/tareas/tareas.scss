@@ -19,3 +19,23 @@
   overflow-y: auto; // Scroll si el contenido es muy largo
 }
 
+/* Switch más grande */
+.switch-lg .form-check-input {
+  transform: scale(1.2);          /* escala visual */
+  transform-origin: left center;  /* mantener posición */
+  width: 3rem;                  /* opcional: ajustar hit area */
+  height: 1.2rem;                 /* opcional: ajustar hit area */
+  margin-top: 0.05rem;            /* alinear verticalmente */
+}
+
+/* Ajustes para que el label/badge quede bien alineado */
+.switch-lg .form-check-label {
+  font-size: 1.1rem;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+
+
+

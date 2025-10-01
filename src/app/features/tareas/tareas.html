@@ -13,19 +13,32 @@
         <div class="card-body bg-light d-flex flex-column">
           <h5 class="card-title">{{ tarea.title }}</h5>
           <p class="card-text flex-grow-1">{{ tarea.description }}</p>
-          <div class="mt-2">
-            <span class="badge" [ngClass]="tarea.completed ? 'bg-success' : 'bg-warning'">
-              {{ tarea.completed ? 'Completada' : 'Pendiente' }}
-            </span>
-          </div>
+          
         </div>
 
         <!-- footer con botones -->
+        <div class="m-3">
+        <div class="form-check form-switch switch-lg d-flex align-items-center gap-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            [id]="'switch-'+tarea.id"
+            [checked]="tarea.completed"
+            (change)="toggleCompleted(tarea, $event.target.checked)"
+          />
+         <label class="form-check-label d-flex align-items-center gap-2" [for]="'switch-'+tarea.id">
+          <span class="badge" [ngClass]="tarea.completed ? 'badge-completed' : 'badge-pending'">
+            {{ tarea.completed ? 'Completada' : 'Pendiente' }}
+          </span>
+        </label>
+        </div>
+        </div>
         <div class="card-footer d-flex gap-2 align-items-stretch">
-        <button class="btn btn-sm btn-primary flex-fill" (click)="editarTareaComp.abrirModal(tarea.id)">
+        <button class="btn btn-sm btn-outline-neutral flex-fill" (click)="editarTareaComp.abrirModal(tarea.id)">
           Editar
         </button>
-        <button class="btn btn-sm btn-danger flex-fill" (click)="deleteTarea(tarea.id)">
+        <button class="btn btn-sm btn-danger-soft flex-fill" (click)="deleteTarea(tarea.id)">
           Eliminar
         </button>
       </div>
