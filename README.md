@@ -1,59 +1,91 @@
-# TodoApp
+# T-App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
+Aplicación web de tareas desarrollada con Angular 20. Permite crear, consultar, editar, completar y eliminar tareas desde el navegador.
 
-## Development server
+## Requisitos
 
-To start a local development server, run:
+- Node.js y npm instalados.
+- Un navegador moderno.
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Puedes comprobar que están disponibles con:
 
 ```bash
-ng generate component component-name
+node --version
+npm --version
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Instalación
+
+Clona o descarga el proyecto, entra en su carpeta raíz e instala las dependencias:
 
 ```bash
-ng generate --help
+cd todo-app
+npm install
 ```
 
-## Building
+## Puesta en marcha
 
-To build the project run:
+Inicia el servidor de desarrollo:
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Abre [http://localhost:4200/](http://localhost:4200/) en el navegador. La aplicación se recarga automáticamente al modificar el código.
 
-## Running unit tests
+## Uso de la aplicación
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+1. Al abrir la aplicación se muestran tareas de ejemplo si todavía no existen datos guardados.
+2. Pulsa **Add +** para crear una tarea.
+3. Completa el título, la descripción y, opcionalmente, la URL de una imagen. El título requiere al menos 3 caracteres y la descripción al menos 10.
+4. Pulsa **Guardar** para añadir la tarea o **Cancelar** para cerrar el formulario.
+5. Usa **Editar** en una tarea para modificar sus datos.
+6. Cambia el interruptor de estado para marcarla como **Completada** o **Pendiente**.
+7. Pulsa **Eliminar** para quitar una tarea.
+
+Los datos se guardan en el `localStorage` del navegador. Por eso permanecen al recargar la página, pero son independientes para cada navegador y dispositivo. Para empezar de nuevo, borra los datos del sitio desde las herramientas de desarrollo del navegador.
+
+## Comandos disponibles
+
+| Comando | Descripción |
+| --- | --- |
+| `npm start` | Inicia el servidor de desarrollo en el puerto 4200. |
+| `npm run build` | Genera una compilación optimizada en `dist/`. |
+| `npm run watch` | Compila en modo desarrollo y observa cambios. |
+| `npm test` | Ejecuta las pruebas unitarias con Karma y Jasmine. |
+
+## Compilación para producción
+
+Genera los archivos listos para publicar con:
 
 ```bash
-ng test
+npm run build
 ```
 
-## Running end-to-end tests
+El resultado se crea en `dist/todo-app/`. Publica el contenido de esa carpeta en un servidor de archivos estáticos que permita el fallback de rutas hacia `index.html`.
 
-For end-to-end (e2e) testing, run:
+## Estructura principal
 
-```bash
-ng e2e
+```text
+src/app/
+├── features/       # Vistas para agregar, editar, ver y listar tareas
+├── layout/         # Barra superior y pie de página
+└── shared/         # Entidades, almacenamiento y notificaciones
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+El servicio `TareasBd` centraliza la lectura y escritura de tareas en `localStorage`. La interfaz `Tarea` define los datos de cada tarea.
 
-## Additional Resources
+## Tecnologías
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Angular 20
+- TypeScript
+- Bootstrap 5
+- SCSS
+- RxJS
+- Karma y Jasmine
+
+## Recursos
+
+- [Documentación de Angular](https://angular.dev/)
+- [Angular CLI](https://angular.dev/tools/cli)
+- [Bootstrap](https://getbootstrap.com/)
